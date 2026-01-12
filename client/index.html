@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= LOGIN / REGISTER SCREEN ================= -->
+<div id="loginScreen" style="height:100vh;display:flex;justify-content:center;align-items:center;">
+  <div style="width:300px;background:white;padding:20px;border-radius:6px;">
+
+    <h2 id="authTitle">Login</h2>
+
+    <input id="loginEmail" type="email" placeholder="Email" style="width:100%;margin-bottom:10px;">
+    <input id="loginPassword" type="password" placeholder="Password" style="width:100%;margin-bottom:10px;">
+
+    <button id="loginBtn" onclick="login()" style="width:100%;">Login</button>
+    <button id="registerBtn" onclick="register()" style="width:100%;display:none;">Register</button>
+
+    <p style="cursor:pointer;color:blue;text-align:center;" onclick="toggleAuth()">
+      Switch to Register
+    </p>
+
+    <p id="loginError" style="color:red;text-align:center;"></p>
+  </div>
+</div>
+
+<!-- ================= MAIN APP ================= -->
+<div class="app" id="app" style="display:none;">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2>TaskMe</h2>
+    <ul>
+      <li class="active" onclick="showAll()">Dashboard</li>
+      <li onclick="showAll()">Tasks</li>
+      <li onclick="showCompleted()">Completed</li>
+      <li onclick="showInProgress()">In Progress</li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search tasks..."
+        onkeyup="searchTasks()"
+      >
+      <button onclick="logout()">Logout</button>
+    </header>
+
+    <!-- STATS -->
+    <section class="stats">
+      <div class="card">
+        Total Tasks<br>
+        <strong id="total">0</strong>
+      </div>
+
+      <div class="card">
+        Completed<br>
+        <strong id="completed">0</strong>
+      </div>
+
+      <div class="card">
+        In Progress<br>
+        <strong id="progress">0</strong>
+      </div>
+
+      <div class="card">
+        Todo<br>
+        <strong id="todo">0</strong>
+      </div>
+    </section>
+
+    <!-- TASK FORM -->
+    <section class="task-form">
+      <input id="title" placeholder="Task title">
+      <textarea id="description" placeholder="Description"></textarea>
+
+      <select id="priority">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <input type="date" id="dueDate">
+
+      <button onclick="addTask()">Add Task</button>
+    </section>
+
+    <!-- TASK LIST -->
+    <section class="tasks" id="taskList">
+      <!-- Tasks injected here by JS -->
+    </section>
+
+  </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
